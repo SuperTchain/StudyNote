@@ -67,11 +67,11 @@ public SqlSessionFactory getSqlSessionFactory(){
 
 驼峰命名法
 
-![](./Img/img3.png)
+![](./Img/img3.PNG)
 
 开启驼峰命名==mapUnderscoreToCamelCase==:
 
-![](./Img/img2.png)
+![](./Img/img2.PNG)
 
 #### 3.typeAliases属性
 
@@ -79,19 +79,19 @@ public SqlSessionFactory getSqlSessionFactory(){
 
 方式有以下几种
 
-![](./Img/img4.png)
+![](./Img/img4.PNG)
 
 #### 4.typeHandlers属性
 
 类型处理器:mybatis与数据库进行数据映射
 
-![](./Img/img5.png)
+![](./Img/img5.PNG)
 
 #### 5.plugin属性
 
 插件:用来拦截sql语句执行步骤(实际是动态代理)
 
-![](./Img/img6.png)
+![](./Img/img6.PNG)
 
 
 
@@ -105,13 +105,13 @@ StatementHandler:sql语句处理器
 
 #### 6.environments属性
 
-![](./Img/img7.png)
+![](./Img/img7.PNG)
 
 #### 7.databaseIdProvider属性
 
 根据不同的数据库执行不同的sql命令
 
-![](./Img/img8.png)
+![](./Img/img8.PNG)
 
 在xxxMepper.xml中用==select==标签中的==databaseId==引用起的别名
 
@@ -119,7 +119,7 @@ StatementHandler:sql语句处理器
 
 将sql映射到全局配置中
 
-![](./Img/img9.png)
+![](./Img/img9.PNG)
 
 ![](./Img/img11.png)
 
@@ -695,7 +695,7 @@ MGB配置文件模板
 
 ##### 2.3配置mapper映射
 
-![](./Img/IMG81.PNG)
+![](./Img/img81.png)
 
 ##### 2.4配置javasql映射
 
@@ -703,7 +703,7 @@ MGB配置文件模板
 
 ##### 2.5配置生成类名
 
-![](./IMG/IMG82.PNG)
+![](./Img/img82.png)
 
 #### 3.生成逆向工程
 
@@ -750,34 +750,34 @@ public SqlSessionFactory getSqlSessionFactory(){
 
 ==把配置文件中的信息解析并保存在Configuration中，返回一个包含Configuration的DefaultSqlSession对象==
 
-![](./img/img86.png)
+![](./Img/img86.png)
 
 ##### 4.2openSession获取SqlSessionFactory对象
 
 ==通过DeafaultSqlSessionFactory返回一个包含Executor和Configuration的DefaultSqlSession对象.==
 
-![](./img/img21.png)
+![](./Img/img21.png)
 ![](./Img/img87.png)
 
 ##### 4.3getmapper获取代理的对象
 
 ==t通过getMapper方法返回一个该接口的代理对象==
 
-![](./img/img88.png)
+![](./Img/img88.png)
 
 ##### 4.4查询实现
 
-![](./img/img89.png)
+![](./Img/img89.png)
 
-![](./img/img90.png)
+![](./Img/img90.png)
 
-![](./img/img91.png)
+![](./Img/img91.png)
 
 ##### 4.5mybatis总结
 
-![](./img/img92.png)
+![](./Img/img92.png)
 
-![](./img/img93.png)
+![](./Img/img93.png)
 
 ### 6.mybatis的插件
 
@@ -785,17 +785,17 @@ public SqlSessionFactory getSqlSessionFactory(){
 
 ##### 6.1插件的执行
 
-![](./img/img96.png)
+![](./Img/img96.png)
 
-![](./img/img97.png)
+![](./Img/img97.png)
 
-![](./img/img98.png)
+![](./Img/img98.png)
 
 在方法上还要加上==@intercepts==注解声明拦截哪个对象的方法,再在全局配置中使用plugin标签声明配置
 
 ##### 6.2插件的执行顺序
 
-![](./img/img95.png)
+![](./Img/img95.png)
 
 ##### 6.3mybatis自定义插件，修改数据
 
@@ -805,25 +805,25 @@ public SqlSessionFactory getSqlSessionFactory(){
 
 ##### 6.5批量执行添加操作
 
-![](./img/img100.png)
+![](./Img/img100.png)
 
 ##### 6.6oracle存储过程
 
 oracle中创建存储过程
 
-![](./img/img101.png)
+![](./Img/img101.png)
 
 oracle存储过程在Mybatis中的调用
 
-![](./img/img102.png)
+![](./Img/img102.png)
 
-![](./img/img103.png)
+![](./Img/img103.png)
 
 ##### 6.7mybatis自定义TypeHandler，处理枚举
 
 枚举属性是final，应该只有get方法没有set方法.
 
-![](./img/img104.png)
+![](./Img/img104.png)
 
 默认mybatis处理枚举时保存的是枚举的名字EnumTypeHandler;若要改变使用索引保存，则需要在mybatis全局配置中使用==typehandler==标签修改.
 
@@ -837,23 +837,23 @@ oracle存储过程在Mybatis中的调用
 
 ==定义保存到数据库中的方法==
 
-![](./img/img106.png)
+![](./Img/img106.png)
 
 ==定义从数据库中获取结果的方式==
 
 首先在==枚举类==中定义返回枚举对象的方法，这里是按照枚举的状态码来进行返回
 
-![](./img/img107.png)
+![](./Img/img107.png)
 
 其次在自定义枚举类中编写返回方法
 
 按==列名==返回
 
-![](./img/img108.png)
+![](./Img/img108.png)
 
 按==索引==返回
 
-![](./img/img109.png)
+![](./Img/img109.png)
 
 按==存储过程==返回
 
@@ -863,4 +863,4 @@ oracle存储过程在Mybatis中的调用
 
 ###### 6.7.2自定义枚举处理器的配置方式
 
-![](./img/img105.png)
+![](./Img/img105.png)
