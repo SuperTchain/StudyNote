@@ -32,13 +32,13 @@ Java虚拟机包括一个类加载器子系统（Class Loader SubSystem）、运
 
 ◎ 本地接口库用于调用操作系统的本地方法库完成具体的指令操作。
 
-![jvm核心图](./img/1.png)
+![jvm核心图](./Img/1.png)
 
 java jdk1.8之后 方法区 移动到直接内存中作为==元空间==存在。
 
 ## 2.JVM的内存区域
 
-![JVM运行时数据](./img/2.png)
+![JVM运行时数据](./Img/2.png)
 
 **线程私有的：**
 
@@ -109,7 +109,7 @@ Java 堆是垃圾收集器管理的主要区域，因此也被称作**GC 堆（G
 
 JDK 8 版本之后方法区（HotSpot 的永久代）被彻底移除了（JDK1.7 就已经开始了），取而代之是**元空间**，元空间使用的是直接内存。
 
-[![JVM堆内存结构-JDK8](./img/3.png)](https://github.com/SuperTchain/JavaGuide/blob/master/docs/java/jvm/pictures/java内存区域/JVM堆内存结构-jdk8.png)
+[![JVM堆内存结构-JDK8](./Img/3.png)](https://github.com/SuperTchain/JavaGuide/blob/master/docs/java/jvm/pictures/java内存区域/JVM堆内存结构-jdk8.png)
 
 **上图所示的 Eden 区、两个 Survivor 区都属于新生代（为了区分，这两个 Survivor 区域按照顺序被命名为 from 和 to），中间一层属于老年代。一般为8:1:1***
 
@@ -178,7 +178,7 @@ JDK1.4 中新加入的 **NIO(New Input/Output) 类**，引入了一种基于**�
 
 类加载过程：**加载->连接->初始化**。连接过程又可分为三步:**验证->准备->解析**。
 
-![类加载器](./img/4.png)	
+![类加载器](./Img/4.png)	
 
 一个非数组类的加载阶段（加载阶段获取类的二进制字节流的动作）是可控性最强的阶段，这一步我们可以去完成还可以自定义类加载器去控制字节流的获取方式（重写一个类加载器的 `loadClass()` 方法）。数组类型不通过类加载器创建，它由 Java 虚拟机直接创建。
 
@@ -192,13 +192,13 @@ JVM 中内置了三个重要的 ClassLoader，除了 BootstrapClassLoader 其他
 2. **ExtensionClassLoader(扩展类加载器)** ：主要负责加载目录 `%JRE_HOME%/lib/ext` 目录下的jar包和类，或被 `java.ext.dirs` 系统变量所指定的路径下的jar包。
 3. **AppClassLoader(应用程序类加载器)** :面向我们用户的加载器，负责加载当前应用classpath下的所有jar包和类。
 
-![类加载器过程](./img/6.png)
+![类加载器过程](./Img/6.png)
 
 ### 3.3双亲委派模型
 
 每一个类都有一个对应它的类加载器。系统中的 ClassLoder 在协同工作的时候会默认使用 **双亲委派模型** 。即在类加载的时候，系统会首先判断当前类是否被加载过。已经被加载的类会直接返回，否则才会尝试加载。加载的时候，首先会把该请求委派该父类加载器的 `loadClass()` 处理，因此所有的请求最终都应该传送到顶层的启动类加载器 `BootstrapClassLoader` 中。当父类加载器无法处理时，向下传递才由自己来处理。当父类加载器为null时，会使用启动类加载器 `BootstrapClassLoader` 作为父类加载器。
 
-![双亲委派图形](./img/5.png)	
+![双亲委派图形](./Img/5.png)	
 
  `AppClassLoader`的父类加载器为`ExtClassLoader` `ExtClassLoader`的父类加载器为null，**null并不代表`ExtClassLoader`没有父类加载器，而是 `BootstrapClassLoader`** 。 
 
