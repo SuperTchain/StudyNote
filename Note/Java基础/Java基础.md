@@ -6,13 +6,63 @@
 
 ![](./Img/img1.png)
 
-### 2.数组
+重写
+
+![1603253853907](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\1603253853907.png)	
+
+**细说一下重写和重载：**
+
+**这两个都是多态的一种表现形式。**
+
+**重载：**
+
+  **1、 重载是在编译器通过方法中形参的静态类型确定调用方法版本的过程。**
+
+  **2、 重载是多态在编译期的表现形式**
+
+  **3、 重载的判定只有两个条件（其他的条件都不能作为判定）：**
+
+​      **1、 方法名一致**
+
+​      **2、形参列表不同**
+
+**重写：**
+
+  **1、重写在方法运行时，通过调用者的实际类型来确定调用的方法版本。（具体细说，就是子父类中的重写方法在对应的class文件常量池的位置相同，一旦子类没有重写，那么子类的实例就会沿着这个位置往上找，直到找到父类的同名方法****）**
+
+  **2、重写只发生在可见的实例方法中：**
+
+​      **1、静态方法不存在重写，形式上的重写只能说是隐藏。**
+
+​      **2、私有方法也不存在重写，父类中private的方法，子类中就算定义了，就是相当于一个新的方法。**
+
+​      **3、静态方法和实例方法不存在相互重写。**
+
+  **3、重写满足一个规则：两同两小一大**
+
+​      **1、两同：方法名和形参列表一致**
+
+​      **2、两小：重写方法的返回值（引用类型）和抛出异常，要和被重写方法的返回值（引用类型）和抛出异常****相同或者是其子类。注意，一旦返回值是基本数据类型，那么重写方法和被重写方法必须相同，且不存在自动拆装箱的问题。**
+
+​      **3、一大：重写方法的访问修饰符大于等于被重写方法的访问修饰符。**
+
+### 2.数组， 二维数组定义，一维长度必须定义，二维可以后续定义
 
 ![](./Img/img2.png)
+
+![1605497846674](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\1605497846674.png)	
 
 ### 3.三元运算符，位运算符
 
 ![](./Img/img3.png)	
+
+三元操作符如果遇到可以转换为数字的类型，会做自动类型提升。
+
+```java
+`Object o1 = (``false``) ? ``new` `Double(``1.0``) : ``new` `Integer(``2``);``System.out.println(o1);`
+```
+
+会打印2.0
 
 ![位运算符](./Img/img48.png)
 
@@ -540,6 +590,12 @@ public class notepad extends JFrame implements ActionListener {
 
 ![通过反射调用方法](./Img/img36.png)
 
+```java
+super.getClass().getName()
+返回：包名+类名
+getClass（）方法是继承自Object类而且没有重写，要返回Date类的名字需要写super.getClass().getSuperclass()
+```
+
 ### 10.动态代理
 
 动态代理类实现InvocationHandler
@@ -766,3 +822,157 @@ public class Download extends HttpServlet {
 ### 14.接口和抽象类
 
 ![接口和抽象类的区别](./Img/img49.png)	
+
+ JDK 1.8时，抽象类的方法默认访问权限变为default 
+
+ JDK 1.8时，接口中的方法可以是public的，也可以是default的 
+
+### 15.静态内部类，成员内部类，局部 内部类，匿名内部类
+
+类方法：static修饰的方法 
+
+![1603249952810](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\1603249952810.png)
+
+ ![img](https://uploadfiles.nowcoder.com/images/20190921/242025553_1569075361009_BA9669C5826A238ACEC0BD86755FA5DB) 
+
+### 16.变量初始化赋值
+
+类变量在不设置初始值时，会进行默认值赋值，而==局部方法中==声明的变量则必须进行初始化，他不会进行默认值赋值。
+
+ 被static修饰的变量称为静态变量，静态变量属于整个类，而局部变量属于方法，只在该方法内有效，所以static不能修饰局部变量  
+
+### 17.访问修饰符大小
+
+![1605087265263](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\1605087265263.png)	
+
+### 18.操作符
+
+
+
+```java
+//1、&   与运算  二进制中，只有同为1才是1		a &= b;		System.out.println("a: "+a);
+```
+
+
+
+```java
+//2、|   非运算  二进制中只要一个为1就为1		a = 4;		b = 2;		a |= b;		System.out.println("a: "+a);
+```
+
+
+
+```java
+//3、^   异或运算  二进制中只要是两者的值不一样那么就是1		a = 4;		b = 2;		a ^= b;		System.out.println("a: "+a);
+```
+
+
+
+
+
+```java
+//4、<<  移位运算    左移运算符，num << 1,相当于num乘以2		a = 4;		b = 2;		a <<= b;		System.out.println("a: "+a);
+```
+
+
+
+```java
+//5、>>   移位运算   右移运算符，num >> 1,相当于num除以2		a = 4;		b = 2;		a >>= b;		System.out.println("a: "+a);
+```
+
+
+
+```java
+//6、~   非运算  二进制所有的位数取反;		 -n=~n+1可推出~n=-n-1，所以~10=-11再加5结果为-6 
+```
+
+
+
+```java
+//7、>>>   移位运算  二进制统一向右移 b位，左边不管是什么都用0代替，这是与 >>的区别;		a = 4;		b = 2;		a >>>= b;		System.out.println("a: "+a+" b: "+b);		System.out.println(8>>>1);
+```
+
+### 19.Socket的交互
+
+![1605583650741](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\1605583650741.png)	
+
+### 20.Java8接口修饰符
+
+Java8的接口方法可以有如下定义
+
+only ==public, abstract, default, static== and strictfp are permitted
+
+### 21.Object中的方法
+
+> Object 类中方法及说明如下：
+>
+> registerNatives()  //私有方法
+>
+> getClass()  //返回此 Object 的运行类。
+> hashCode()  //用于获取对象的哈希值。
+> equals(Object obj)   //用于确认两个对象是否“相同”。
+> clone()  //创建并返回此对象的一个副本。
+> toString()  //返回该对象的字符串表示。  
+> notify()  //唤醒在此对象监视器上等待的单个线程。  
+> notifyAll()   //唤醒在此对象监视器上等待的所有线程。  
+> wait(long timeout)  //在其他线程调用此对象的 notify() 方法或 notifyAll() 方法，或    者超过指定的时间量前，导致当前线程等待。  
+> wait(long timeout, int nanos)  //在其他线程调用此对象的 notify() 方法或 notifyAll() 方法，或者其他某个线程中断当前线程，或者已超过某个实际时间量前，导致当前线程等待。
+> wait()  //用于让当前线程失去操作权限，当前线程进入等待序列
+> finalize()  //当垃圾回收器确定不存在对该对象的更多引用时，由对象的垃圾回收器调用此方法。
+
+### 22.集合结构
+
+![1605666399752](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\1605666399752.png)	
+
+<img src="C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\1605666431979.png" alt="1605666431979" style="zoom:80%;" />	
+
+### 23.异常
+
+ <img src="http://uploadfiles.nowcoder.com/images/20151010/214250_1444467985224_6A144C1382BBEF1BE30E9B91BC2973C8" alt="img" style="zoom:80%;" />	
+
+\1. 粉红色的是受检查的异常(checked exceptions),其必须被 try{}catch语句块所捕获,或者在方法签名里通过throws子句声明.受检查的异常必须在编译时被捕捉处理,命名为 Checked Exception 是因为Java编译器要进行检查,Java虚拟机也要进行检查,以确保这个规则得到遵守.
+
+\2. 绿色的异常是运行时异常(runtime exceptions),需要程序员自己分析代码决定是否捕获和处理,比如 空指针,被0除...
+
+\3. 而声明为Error的，则属于严重错误，如系统崩溃、虚拟机错误、动态链接失败等，这些错误无法恢复或者不可能捕捉，将导致应用程序中断，Error不需要捕捉。 
+
+### 24.i=i++与i=++i的坑
+
+> Java使用了中间缓存变量机制：
+> i=i++;等同于：
+> temp=i； (等号右边的i)
+> i=i+1;    (等号右边的i)
+> i=temp;  (等号左边的i)
+> 而i=++i;则等同于：
+> i=i+1;
+> temp=i;
+> i=temp; 
+
+### 25.常用ASCII码
+
+ 常用ASCII码值：空格为32；数字0为48；“A”为65；“a”值为97。 
+
+## 26.常用命令
+
+查看被占用端口对应的 PID
+
+```
+netstat -aon|findstr "8081"
+```
+
+ 查看指定 PID 的进程
+
+```
+tasklist|findstr "9088"
+```
+
+结束进程
+
+```
+taskkill /T /F /PID 9088 
+```
+
+查看当前线程情况查看堆栈信息
+
+```
+jconsole
+```
