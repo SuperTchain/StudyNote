@@ -794,3 +794,155 @@ void testSearchDocument() throws IOException {
 ```
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210519221316219.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNjY1NzQ1,size_16,color_FFFFFF,t_70)
+
+# 七、kibana常用命令
+
+```bash
+GET _search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+
+#集群健康值排查
+#查看集群状态
+GET /_cluster/health
+#查看索引信息，找出异常索引
+GET /_cat/indices\?v
+# 查看索引设置
+GET /test1/_settings
+# 重建索引
+ POST _reindex
+  {
+    "source": {
+      "index": "test1"
+    },
+    "dest": {
+      "index": "test2"
+    }
+  }
+# 查看重建索引的设置
+  GET /test2
+  
+# 删除索引
+  DELETE /test1
+  
+# 创建索引别名
+  POST /_aliases
+  {
+    "actions": [
+      {
+        "add": {
+          "index": "test2",
+          "alias": "test1"
+        }
+      }
+    ]
+  }
+# 重新设置索引分片信息
+PUT test2/_settings
+{
+      "number_of_replicas" : 2
+}
+GET /test2/_settings
+
+# 分词
+GET _analyze
+{
+  "analyzer": "ik_max_word",
+  "text": "中华人民共和国万岁"
+}
+
+DELETE /test1/_doc/Ij7J8XoBzdABBHQNWIjv
+
+# 添加
+POST /test1/_doc
+{
+  "name":"搁着查询呢1",
+  "age":2,
+  "birthday":"2021-07-28",
+  "address":"擦的撒"
+}
+# 更新
+POST /test1/_doc/5/_update
+{
+  "doc":{
+    "age":3
+  }
+}
+
+GET _cat/health
+# 创建索引
+PUT /test1
+{
+  "mappings": {
+    "properties": {
+      "name":{
+        "type": "text"
+      },
+      "age":{
+        "type": "long"
+      },
+      "birthday":{
+        "type": "date"
+      },
+      "address":{
+        "type": "text"
+      }
+    }
+  }
+}
+
+
+GET /test1/_search?q=name:查询
+GET /test1/_search
+{
+  "query": {
+    "match": {
+      "name": "查询"
+    }
+  }
+  , "sort": [
+    {
+      "age": {
+        "order": "asc"
+      }
+    }
+  ],
+  "_source": ["name","age"]
+}
+
+GET /test1/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {
+            "name": "查询"
+          }
+        }
+      ],
+      "filter": [
+        {
+          "range": {
+            "age": {
+              "gte": 21,
+              "lte": 40
+            }
+          }
+        }
+      ]
+    }
+  },
+  "highlight": {  
+    "pre_tags": "<span class='key' style='color:red'>",
+    "post_tags": "</span>" ,
+    "fields": {
+      "name": {}
+    }
+  }
+}
+```
+
