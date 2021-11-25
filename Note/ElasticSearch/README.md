@@ -528,7 +528,7 @@ GET /kuangshen/_doc/_search
 source中不包含哪种属性  
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210518210728399.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNjY1NzQ1,size_16,color_FFFFFF,t_70)
 
-### 5.2.4.排序
+###  5.2.4.排序
 
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210518210943229.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNjY1NzQ1,size_16,color_FFFFFF,t_70)
 
@@ -553,7 +553,7 @@ must\_not：不必须
 
 - gt大于
 - gte大于等于
-- lte小于
+- lt小于
 - lte小于等于  
   ![在这里插入图片描述](https://img-blog.csdnimg.cn/20210518213026792.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQyNjY1NzQ1,size_16,color_FFFFFF,t_70)
 

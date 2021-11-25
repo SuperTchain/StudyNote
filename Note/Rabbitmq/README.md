@@ -532,16 +532,14 @@ AMQP 更准确的说是一种 binary wire-level protocol（链接协议）。这
 - `Connection`：应用程序与Broker之间的网络连接。
 
 - `Channel`：信道，即信息传输的通道，可以建立多个 Channel，每个 Channel 代表一个会话任务。
-
   - 信道是建立在 TCP 连接内的虚拟连接，信息的读写都通过信道传输，因为对于操纵系统而言，建立和销毁 TCP 是非常昂贵的，所以引入了信道的概念，以复用一条 TCP 连接。
-
+  
 - `Broker(Server)` ：标识消息队列服务器实体，例如这里就是 RabbitMQ Server。
 
 - `Virtual Host`：虚拟主机，一个 Broker 中可以设置多个 Virtual Host，用作不同用户的权限隔离。
-
   - Broker 可以理解为整个数据库服务，而 Virtual Host 就是其中每个数据库的感觉，不同项目可以对应不同的数据库，其中有着项目所属的业务表等等。
   - 每个 Virtual Host 中，可以有若干个 Exchange 和 Queue。
-
+  
 - `Exchange`：交换机，用来接收生产者发送的消息，然后将这些消息根据路由键发送到队列。
 
 - `Binding`：Exchange 和 Queue 之间的虚拟连接，Binding 中可以包括多个 Routing key。
